@@ -1,10 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-nx-welcome',
-  standalone: true,
-  imports: [CommonModule],
+  selector: 'shop-nx-welcome',
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -169,6 +166,7 @@ import { CommonModule } from '@angular/common';
         flex-direction: column;
         gap: 2rem;
       }
+
       #learning-materials {
         padding: 2.5rem 2rem;
       }
@@ -234,7 +232,6 @@ import { CommonModule } from '@angular/common';
         color: rgba(255, 255, 255, 1);
         background-color: hsla(162, 55%, 33%, 1);
       }
-
       .list-item-link:hover > span > span {
         color: rgba(243, 244, 246, 1);
       }
@@ -513,7 +510,7 @@ import { CommonModule } from '@angular/common';
                 </svg>
               </a>
               <a
-                href="https://nx.dev/blog?utm_source=nx-project"
+                href="https://nx.dev/blog/?utm_source=nx-project"
                 target="_blank"
                 rel="noreferrer"
                 class="list-item-link"
@@ -585,7 +582,7 @@ import { CommonModule } from '@angular/common';
                 </svg>
               </a>
               <a
-                href="https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx-project"
+                href="https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx-project"
                 target="_blank"
                 rel="noreferrer"
                 class="list-item-link"
@@ -777,13 +774,13 @@ import { CommonModule } from '@angular/common';
               Build, test and lint your app
             </summary>
             <pre><span># Build</span>
-nx build 
+nx build shop
 <span># Test</span>
-nx test 
+nx test shop
 <span># Lint</span>
-nx lint 
+nx lint shop
 <span># Run them together!</span>
-nx run-many -t build test lint</pre>
+nx run-many -p shop -t build test lint</pre>
           </details>
           <details>
             <summary>
