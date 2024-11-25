@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { SecuredLayoutComponent } from './secured-layout/secured-layout.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
 
 // PrimeNG modules
 import { InputTextModule } from 'primeng/inputtext';
@@ -16,7 +17,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
-import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { MenubarModule } from 'primeng/menubar';
+import { RippleModule } from 'primeng/ripple';
 
 const primeNg = [
   InputTextModule,
@@ -27,10 +29,17 @@ const primeNg = [
   DividerModule,
   CardModule,
   CheckboxModule,
+  MenubarModule,
+  RippleModule,
 ];
 
 @NgModule({
-  declarations: [SecuredLayoutComponent, PublicLayoutComponent, LoginComponent, MenuBarComponent],
+  declarations: [
+    SecuredLayoutComponent,
+    PublicLayoutComponent,
+    LoginComponent,
+    MenuBarComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,

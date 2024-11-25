@@ -1,8 +1,23 @@
-<div class="grid mb-1">
+<div class="grid mb-8">
   <div class="col">
-    <div class="text-center p-3 border-round-sm bg-primary">
-      <h2>Home</h2>
-      <p>Welcome to our website!</p>
+    <div class="text-center shadow-1 border-0">
+      <p-menubar
+        styleClass="fixed shadow-1 border-noround border-0 w-full h-5rem"
+        [model]="items"
+      >
+        <ng-template pTemplate="start">
+          <div><h1>ADMIN</h1></div>
+        </ng-template>
+        <ng-template pTemplate="item" let-item let-root="root">
+          <a
+            pRipple
+            class="flex p-menuitem-link align-items-baseline styled-box-orange"
+          >
+            <span [class]="item.icon" style="font-size: 0.8rem"></span>
+            <span class="ml-2">{{ item.label }}</span>
+          </a>
+        </ng-template></p-menubar
+      >
     </div>
   </div>
 </div>
