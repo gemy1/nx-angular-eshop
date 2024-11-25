@@ -15,6 +15,8 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
+import { CheckboxModule } from 'primeng/checkbox';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
 
 const primeNg = [
   InputTextModule,
@@ -24,10 +26,11 @@ const primeNg = [
   InputGroupAddonModule,
   DividerModule,
   CardModule,
+  CheckboxModule,
 ];
 
 @NgModule({
-  declarations: [SecuredLayoutComponent, PublicLayoutComponent, LoginComponent],
+  declarations: [SecuredLayoutComponent, PublicLayoutComponent, LoginComponent, MenuBarComponent],
   imports: [
     CommonModule,
     FormsModule,
