@@ -22,7 +22,19 @@
             "input": "apps/admin/public"
           }
         ],
-        "styles": ["apps/admin/src/styles.scss"],
+        "styles": [
+          "apps/admin/src/styles.scss",
+          {
+            "input": "apps/admin/src/themes/light.scss",
+            "bundleName": "light",
+            "inject": false
+          },
+          {
+            "input": "apps/admin/src/themes/dark.scss",
+            "bundleName": "dark",
+            "inject": false
+          }
+        ],
         "scripts": []
       },
       "configurations": {
