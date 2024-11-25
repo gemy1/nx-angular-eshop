@@ -1,0 +1,19 @@
+<p-card header="Login" [style]="{ width: '50%', }">
+  <div class="flex flex-column md:flex-row gap-3">
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input pInputText placeholder="Username" />
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>$</p-inputGroupAddon>
+      <input
+        pPassword
+        [feedback]="false"
+        type="password"
+        placeholder="password"
+      />
+    </p-inputGroup>
+  </div>
+</p-card>
