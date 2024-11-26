@@ -40,6 +40,10 @@ export class ThemeService {
     localStorage.setItem('admin-theme', theme);
   }
 
+  toggleTheme() {
+    this.theme = this.theme === 'light' ? 'dark' : 'light';
+    this.setTheme(this.theme);
+  }
   toggleSidebar() {
     this.sidebarVisible = !this.sidebarVisible;
   }
