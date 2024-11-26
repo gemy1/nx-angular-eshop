@@ -5,12 +5,18 @@
       <div class="col-3 hidden lg:block">
         <admin-sidebar></admin-sidebar>
       </div>
+
       <div class="col">
-        <div class="text-center p-3 border-round-sm bg-primary font-bold">
-          all
+        <div
+          class="text-center p-3 border-round-sm surface-card surface-border border-1 font-bold"
+        >
+          <router-outlet></router-outlet>
         </div>
       </div>
     </div>
-    <router-outlet></router-outlet>
   </div>
+
+  <p-sidebar [(visible)]="themeService.sidebarVisible">
+    <admin-sidebar-content></admin-sidebar-content>
+  </p-sidebar>
 </div>

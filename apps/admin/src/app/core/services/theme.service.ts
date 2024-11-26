@@ -6,7 +6,9 @@ import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 export class ThemeService {
   private renderer: Renderer2;
   private styleLink: HTMLLinkElement | null = null;
+
   theme = 'light';
+  sidebarVisible = false;
 
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
@@ -36,5 +38,9 @@ export class ThemeService {
 
     this.theme = theme;
     localStorage.setItem('admin-theme', theme);
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
   }
 }

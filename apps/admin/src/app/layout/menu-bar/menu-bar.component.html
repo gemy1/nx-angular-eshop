@@ -1,11 +1,28 @@
-<div class="grid mb-8">
+<div class="grid mb-7">
   <div class="col">
     <div class="text-center shadow-1 border-0">
-      <p-menubar
+      <div
+        class="fixed shadow-1 border-noround border-0 w-full h-4rem bg-white flex align-items-center"
+      >
+        <p-button
+          icon="pi pi-bars"
+          (onClick)="themeService.toggleSidebar()"
+          [text]="true"
+          styleClass="lg:hidden"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<p-menubar
         styleClass="fixed shadow-1 border-noround border-0 w-full h-5rem"
-        [model]="items"
       >
         <ng-template pTemplate="start">
+          <div><h1>ADMIN</h1></div>
+        </ng-template>
+        <ng-template pTemplate="end">
           <div><h1>ADMIN</h1></div>
         </ng-template>
         <ng-template pTemplate="item" let-item let-root="root">
@@ -16,8 +33,5 @@
             <span [class]="item.icon" style="font-size: 0.8rem"></span>
             <span class="ml-2">{{ item.label }}</span>
           </a>
-        </ng-template></p-menubar
-      >
-    </div>
-  </div>
-</div>
+        </ng-template>
+      </p-menubar> -->
