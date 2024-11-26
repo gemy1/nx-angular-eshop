@@ -19,6 +19,8 @@ import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SidebarContentComponent } from '../sidebar/sidebar-content/sidebar-content.component';
 
 const primeNg = [
   InputTextModule,
@@ -39,6 +41,8 @@ const primeNg = [
     PublicLayoutComponent,
     LoginComponent,
     MenuBarComponent,
+    SidebarComponent,
+    SidebarContentComponent,
   ],
   imports: [
     CommonModule,

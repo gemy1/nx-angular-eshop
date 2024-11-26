@@ -1,20 +1,16 @@
 <div class="surface-ground">
   <admin-menu-bar></admin-menu-bar>
-
-  <div class="grid">
-    <div class="col-3 hidden md:block">
-      <div class="surface-card shadow-1 border-round p-3">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore,
-        placeat! Animi et cupiditate illo perferendis voluptates veritatis
-        porro, eius reiciendis praesentium culpa voluptatem deserunt? Veritatis,
-        earum amet? Quasi, eos id!
+  <div class="admin-container">
+    <div class="grid">
+      <div class="col-3 hidden lg:block">
+        <admin-sidebar></admin-sidebar>
+      </div>
+      <div class="col">
+        <div class="text-center p-3 border-round-sm bg-primary font-bold">
+          all
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="text-center p-3 border-round-sm bg-primary font-bold">
-        all
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </div>
-  <router-outlet></router-outlet>
 </div>
