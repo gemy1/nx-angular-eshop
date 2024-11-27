@@ -8,6 +8,13 @@ const routes: Routes = [
   {
     path: '',
     component: SecuredLayoutComponent,
+    children: [
+      {
+        path: 'category',
+        loadChildren: () =>
+          import('../category/category.module').then((m) => m.CategoryModule),
+      },
+    ],
   },
   {
     path: '',
