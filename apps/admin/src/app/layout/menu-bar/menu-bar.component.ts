@@ -13,8 +13,19 @@ export class MenuBarComponent implements OnInit {
   constructor(public themeService: ThemeService) {}
   ngOnInit(): void {
     this.items = [
-      { label: 'Dashboard', icon: 'pi pi-home', routerLink: ['/'] },
-      { label: 'Products', icon: 'pi pi-barcode', routerLink: ['/products'] },
+      {
+        tooltipOptions: {
+          tooltipLabel: 'Edit',
+        },
+        icon: 'pi pi-pencil',
+        style: { 'margin-bottom': '10px' },
+      },
+      {
+        tooltipOptions: {
+          tooltipLabel: 'Logout',
+        },
+        icon: 'pi pi-sign-out',
+      },
     ];
   }
 }

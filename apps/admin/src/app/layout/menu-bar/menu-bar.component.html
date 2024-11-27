@@ -2,7 +2,7 @@
   <div class="col">
     <div class="text-center shadow-1 border-0">
       <div
-        class="fixed shadow-1 border-noround border-0 w-full h-4rem surface-0 flex align-items-center pl-4 pr-4 justify-content-between"
+        class="top-0 left-0 fixed shadow-1 border-noround border-0 w-full h-4rem surface-0 flex align-items-center pl-4 pr-4 justify-content-between"
       >
         <p-button
           icon="pi pi-bars"
@@ -10,21 +10,29 @@
           [text]="true"
           styleClass="lg:hidden"
         />
-        <div><h2 class="text-500">LOGO</h2></div>
-        <div class="flex gap-2">
+
+        <div><h2 class="text-blue-500">LOGO</h2></div>
+        <div class="flex gap-2 align-items-center">
           <p-button
             [icon]="themeService.theme === 'light' ? 'pi pi-moon' : 'pi pi-sun'"
             [rounded]="true"
             [text]="true"
-            severity="secondary"
             (onClick)="themeService.toggleTheme()"
           />
-          <p-button
-            icon="pi pi-bookmark"
-            [rounded]="true"
-            severity="secondary"
-            [outlined]="true"
-          />
+          <p-button [rounded]="true" [text]="true">
+            <i class="pi pi-bell" pBadge value="2" severity="danger"></i>
+          </p-button>
+
+          <div class="speed-dial-btn">
+            <p-speedDial
+              [model]="items"
+              direction="down"
+              showIcon="pi pi-user"
+              hideIcon="pi pi-times"
+              buttonClassName="p-button-text"
+              [style]="{ right: '25px', top: '12px' }"
+            />
+          </div>
         </div>
       </div>
     </div>
