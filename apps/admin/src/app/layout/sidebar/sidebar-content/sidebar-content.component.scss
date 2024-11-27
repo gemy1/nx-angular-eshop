@@ -1,4 +1,8 @@
 ::ng-deep .p-panelmenu-panel {
   border: 0 !important;
-  margin-bottom: 0;
+  margin-bottom: 5px;
+}
+
+.router-link-active {
+  background-color: var(--surface-100);
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
 
@@ -10,22 +11,32 @@ import { MenuItem } from 'primeng/api';
 export class SidebarContentComponent implements OnInit {
   items: MenuItem[] = [];
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.items = [
       {
         label: 'Dashboard',
         disabled: true,
+        style: { 'margin-left': '-10px' },
       },
 
       {
         label: 'Home',
         icon: 'pi pi-home',
+        routerLinkActiveOptions: { exact: true },
+        route: '/',
       },
       {
         label: 'Categories',
         icon: 'pi pi-list',
+
         items: [
-          { label: 'All', icon: 'pi pi-angle-right' },
+          {
+            label: 'All',
+            icon: 'pi pi-angle-right',
+            route: '/category',
+          },
           { label: 'New', icon: 'pi pi-angle-right' },
         ],
       },
@@ -49,6 +60,11 @@ export class SidebarContentComponent implements OnInit {
           { label: 'All', icon: 'pi pi-angle-right' },
           { label: 'New', icon: 'pi pi-angle-right' },
         ],
+      },
+      {
+        label: 'Options',
+        disabled: true,
+        style: { 'margin-left': '-10px' },
       },
       {
         label: 'Settings',
