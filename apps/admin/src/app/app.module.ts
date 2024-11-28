@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
+import { TranslationModule } from '@e-shop/translation';
 
 const PrimeNgModules = [ButtonModule, MenubarModule];
 
@@ -24,6 +25,7 @@ const PrimeNgModules = [ButtonModule, MenubarModule];
     LayoutModule,
     CategoryModule,
     CoreModule,
+    TranslationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
