@@ -21,6 +21,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { TranslationModule } from '@e-shop/translation';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MessagesModule } from 'primeng/messages';
+import { TableModule } from 'primeng/table';
 
 const primeNg = [
   InputTextModule,
@@ -41,6 +42,7 @@ const primeNg = [
   PanelMenuModule,
   OverlayPanelModule,
   MessagesModule,
+  TableModule,
 ];
 
 @NgModule({

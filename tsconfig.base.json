@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@e-shop/products": ["libs/products/src/index.ts"],
       "@e-shop/translation": ["libs/translation/src/index.ts"]
     }
   },
