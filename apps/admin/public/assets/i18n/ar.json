@@ -1,3 +1,15 @@
 {
-  "WELCOME": "مرحبا"
+  "WELCOME": "مرحبا",
+  "Sidebar": {
+    "Home": "الرئسيه",
+    "Categories": "الاقسام",
+    "Products": "المنتجات",
+    "Users": "المستخدمين",
+    "Orders": "الطلبات",
+    "Settings": "الإعدادات",
+    "All": "الكل",
+    "New": "جديد",
+    "Dashboard": "لوحه التحكم",
+    "Options": "الخيارات"
+  }
 }

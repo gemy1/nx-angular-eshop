@@ -19,6 +19,8 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { BadgeModule } from 'primeng/badge';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { TranslationModule } from '@e-shop/translation';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { MessagesModule } from 'primeng/messages';
 
 const primeNg = [
   InputTextModule,
@@ -37,11 +39,13 @@ const primeNg = [
   SpeedDialModule,
   BadgeModule,
   PanelMenuModule,
+  OverlayPanelModule,
+  MessagesModule,
 ];
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, TranslationModule, ...primeNg],
+  imports: [CommonModule, ...primeNg],
   exports: [...primeNg, TranslationModule],
 })
 export class SharedModule {}

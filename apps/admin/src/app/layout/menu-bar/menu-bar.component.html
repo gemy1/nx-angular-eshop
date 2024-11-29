@@ -12,22 +12,39 @@
         />
 
         <div>
-          <h2 class="text-blue-500">{{ 'WELCOME' | translate }}</h2>
+          <h2 class="text-color">
+            <i class="pi pi-shop text-3xl mr-2"></i>{{ 'WELCOME' | translate }}
+          </h2>
         </div>
         <div class="flex gap-2 align-items-center">
+          <div class="speed-dial-btn">
+            <p-speedDial
+              [model]="langItems"
+              direction="down"
+              showIcon="pi pi-language"
+              hideIcon="pi pi-times"
+              buttonClassName="p-button-text"
+              [style]="{ right: '180px', top: '12px' }"
+            />
+          </div>
+
           <p-button
             [icon]="themeService.theme === 'light' ? 'pi pi-moon' : 'pi pi-sun'"
             [rounded]="true"
             [text]="true"
             (onClick)="themeService.toggleTheme()"
           />
-          <p-button [rounded]="true" [text]="true">
+          <p-button
+            [rounded]="true"
+            [text]="true"
+            (onClick)="op.toggle($event)"
+          >
             <i class="pi pi-bell" pBadge value="2" severity="danger"></i>
           </p-button>
 
           <div class="speed-dial-btn">
             <p-speedDial
-              [model]="items"
+              [model]="userItems"
               direction="down"
               showIcon="pi pi-user"
               hideIcon="pi pi-times"
@@ -40,3 +57,8 @@
     </div>
   </div>
 </div>
+
+<p-overlayPanel #op>
+  <div class="w-23rem">Notifications</div>
+  <p-messages styleClass="w-23rem" [value]="messages" />
+</p-overlayPanel>

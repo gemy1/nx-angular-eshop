@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { MenuItem } from 'primeng/api';
+import { LanguageService } from './core/services/language.service';
 
 @Component({
   selector: 'admin-root',
@@ -13,9 +13,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     private primeConfig: PrimeNGConfig,
-    private translate: TranslateService
+    private language: LanguageService
   ) {
-    this.translate.setDefaultLang('ar');
+    const lang = localStorage.getItem('admin-language') ?? 'en';
+    this.language.setLanguage(lang);
   }
 
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, Message } from 'primeng/api';
 import { ThemeService } from '../../core/services/theme.service';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
   selector: 'admin-menu-bar',
@@ -8,23 +9,60 @@ import { ThemeService } from '../../core/services/theme.service';
   styleUrl: './menu-bar.component.scss',
 })
 export class MenuBarComponent implements OnInit {
-  items: MenuItem[] = [];
+  userItems: MenuItem[] = [];
+  langItems: MenuItem[] = [];
+  messages: Message[] = [];
 
-  constructor(public themeService: ThemeService) {}
+  constructor(
+    public themeService: ThemeService,
+    private language: LanguageService
+  ) {}
+
   ngOnInit(): void {
-    this.items = [
+    this.messages = [
+      {
+        severity: 'success',
+        detail: 'You have successfully logged in.',
+      },
+      {
+        severity: 'info',
+        detail: 'You have new mail',
+      },
+    ];
+
+    this.userItems = [
       {
         tooltipOptions: {
           tooltipLabel: 'Edit',
         },
         icon: 'pi pi-pencil',
-        style: { 'margin-bottom': '10px' },
       },
       {
         tooltipOptions: {
           tooltipLabel: 'Logout',
         },
         icon: 'pi pi-sign-out',
+      },
+    ];
+
+    this.langItems = [
+      {
+        tooltipOptions: {
+          tooltipLabel: 'Arabic',
+        },
+        icon: 'pi pi-language',
+        command: () => {
+          this.language.setLanguage('ar');
+        },
+      },
+      {
+        tooltipOptions: {
+          tooltipLabel: 'English',
+        },
+        icon: 'pi pi-language',
+        command: () => {
+          this.language.setLanguage('en');
+        },
       },
     ];
   }
