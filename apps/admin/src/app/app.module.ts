@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+
+import { AppComponent } from './app.component';
+
+import { LayoutModule } from './layout/layout.module';
+import { CoreModule } from './core/core.module';
 import { CategoryModule } from './category/category.module';
 
-import { ButtonModule } from 'primeng/button';
-import { MenubarModule } from 'primeng/menubar';
-import { CoreModule } from './core/core.module';
-import { LayoutModule } from './layout/layout.module';
 import { TranslationModule } from '@e-shop/translation';
-
-const PrimeNgModules = [ButtonModule, MenubarModule];
+import { AuthModule } from '@e-shop/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,11 +19,11 @@ const PrimeNgModules = [ButtonModule, MenubarModule];
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
-    ...PrimeNgModules,
     LayoutModule,
     CategoryModule,
     CoreModule,
     TranslationModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
