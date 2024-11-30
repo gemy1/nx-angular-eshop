@@ -10,12 +10,14 @@
       />
     </ng-template>
   </p-toolbar>
+
   <p-table
     #dt
     [value]="categories"
     styleClass=" p-datatable-striped p-datatable-thead text-light"
     sortField="id"
     [sortOrder]="-1"
+    [globalFilterFields]="['id', 'name', 'description']"
   >
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
@@ -23,9 +25,10 @@
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input
+            #searchValue
             pInputText
             type="text"
-            (input)="dt.filterGlobal($event, 'contains')"
+            (input)="dt.filterGlobal(searchValue.value, 'contains')"
             placeholder="Search..."
           />
         </span>
@@ -84,40 +87,42 @@
   [modal]="true"
   [style]="{ width: '40rem' }"
 >
-  <p>Update Category fields</p>
-  <form>
-    <div class="flex flex-column gap-2 mb-5">
-      <label for="name" class="font-light">Name</label>
-      <input
-        pInputText
-        id="name"
-        placeholder="Category name"
-        [(ngModel)]="selectedCategory.name"
-        name="name"
-      />
-    </div>
+  <p-card>
+    <p>Update Category fields</p>
+    <form>
+      <div class="flex flex-column gap-2 mb-5">
+        <label for="name" class="font-light">Name</label>
+        <input
+          pInputText
+          id="name"
+          placeholder="Category name"
+          [(ngModel)]="selectedCategory.name"
+          name="name"
+        />
+      </div>
 
-    <div class="flex gap-2 mb-4">
-      <label for="color">Select Color </label>
-      <p-colorPicker
-        id="color"
-        [(ngModel)]="selectedCategory.color"
-        name="color"
-      />
-    </div>
+      <div class="flex gap-2 mb-4">
+        <label for="color">Select Color </label>
+        <p-colorPicker
+          id="color"
+          [(ngModel)]="selectedCategory.color"
+          name="color"
+        />
+      </div>
 
-    <div class="flex flex-column gap-2 mb-4">
-      <label for="description" class="font-light">Description</label>
-      <textarea
-        rows="5"
-        cols="30"
-        pInputTextarea
-        placeholder="description"
-        [(ngModel)]="selectedCategory.description"
-        name="description"
-      ></textarea>
-    </div>
-  </form>
+      <div class="flex flex-column gap-2 mb-4">
+        <label for="description" class="font-light">Description</label>
+        <textarea
+          rows="5"
+          cols="30"
+          pInputTextarea
+          placeholder="description"
+          [(ngModel)]="selectedCategory.description"
+          name="description"
+        ></textarea>
+      </div>
+    </form>
+  </p-card>
   <ng-template pTemplate="footer">
     <div class="flex gap-2 justify-content-end">
       <p-button
