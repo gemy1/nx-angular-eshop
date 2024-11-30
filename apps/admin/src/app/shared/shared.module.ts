@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 // PrimeNG modules
 import { InputTextModule } from 'primeng/inputtext';
@@ -22,6 +25,12 @@ import { TranslationModule } from '@e-shop/translation';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
+import { ToolbarModule } from 'primeng/toolbar';
+import { DialogModule } from 'primeng/dialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
 
 const primeNg = [
   InputTextModule,
@@ -43,11 +52,18 @@ const primeNg = [
   OverlayPanelModule,
   MessagesModule,
   TableModule,
+  ToolbarModule,
+  DialogModule,
+  ColorPickerModule,
+  InputTextareaModule,
+  ConfirmPopupModule,
+  ToastModule,
 ];
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, ...primeNg],
-  exports: [...primeNg, TranslationModule],
+  providers: [ConfirmationService, MessageService],
+  imports: [CommonModule, FormsModule, ...primeNg],
+  exports: [...primeNg, TranslationModule, FormsModule],
 })
 export class SharedModule {}

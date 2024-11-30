@@ -1,1 +1,131 @@
-<p>category works!</p>
+<div class="card">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <p-button
+        severity="success"
+        label="New"
+        icon="pi pi-plus"
+        class="mr-2"
+        (onClick)="addCategory()"
+      />
+    </ng-template>
+  </p-toolbar>
+  <p-table
+    #dt
+    [value]="categories"
+    styleClass=" p-datatable-striped p-datatable-thead text-light"
+    sortField="id"
+    [sortOrder]="-1"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0">Manage Categories</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($event, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr class="text-sm h-4rem">
+        <th pSortableColumn="id" class="surface-100 col-1">
+          ID <p-sortIcon field="id" />
+        </th>
+        <th class="surface-100">Name</th>
+        <th class="surface-100 col-3">Description</th>
+        <th class="surface-100">Color</th>
+        <th class="surface-100 text-center">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <div
+            class="w-2rem h-2rem border-round"
+            [style]="{ backgroundColor: category.color }"
+          ></div>
+        </td>
+        <td class="text-center">
+          <p-button
+            icon="pi pi-pencil"
+            class="mr-2"
+            [rounded]="true"
+            [outlined]="true"
+            severity="success"
+            (onClick)="editCategory(category)"
+          ></p-button>
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            [rounded]="true"
+            [outlined]="true"
+            (onClick)="deleteCategory(category, $event)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmPopup />
+<p-toast />
+
+<p-dialog
+  [(visible)]="showDialog"
+  header="Edit Category"
+  [modal]="true"
+  [style]="{ width: '40rem' }"
+>
+  <p>Update Category fields</p>
+  <form>
+    <div class="flex flex-column gap-2 mb-5">
+      <label for="name" class="font-light">Name</label>
+      <input
+        pInputText
+        id="name"
+        placeholder="Category name"
+        [(ngModel)]="selectedCategory.name"
+        name="name"
+      />
+    </div>
+
+    <div class="flex gap-2 mb-4">
+      <label for="color">Select Color </label>
+      <p-colorPicker
+        id="color"
+        [(ngModel)]="selectedCategory.color"
+        name="color"
+      />
+    </div>
+
+    <div class="flex flex-column gap-2 mb-4">
+      <label for="description" class="font-light">Description</label>
+      <textarea
+        rows="5"
+        cols="30"
+        pInputTextarea
+        placeholder="description"
+        [(ngModel)]="selectedCategory.description"
+        name="description"
+      ></textarea>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <div class="flex gap-2 justify-content-end">
+      <p-button
+        label="Cancel"
+        severity="secondary"
+        (onClick)="showDialog = false"
+      />
+      <p-button label="Save" (onClick)="saveCategory()" />
+    </div>
+  </ng-template>
+</p-dialog>

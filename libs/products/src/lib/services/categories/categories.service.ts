@@ -13,10 +13,22 @@ export class CategoriesService {
     return this.Http.get<ICategory[]>('http://localhost:3000/category');
   }
 
+  createCategory(category: ICategory) {
+    return this.Http.post<ICategory>(
+      'http://localhost:3000/category',
+      category
+    );
+  }
+
   updateCategory(category: ICategory): Observable<ICategory> {
     return this.Http.patch<ICategory>(
       `http://localhost:3000/category/${category.id}`,
       category
+    );
+  }
+  deleteCategory(category: ICategory): Observable<void> {
+    return this.Http.delete<void>(
+      `http://localhost:3000/category/${category.id}`
     );
   }
 }
