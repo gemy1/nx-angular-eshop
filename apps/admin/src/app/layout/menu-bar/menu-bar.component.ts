@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem, Message } from 'primeng/api';
 import { ThemeService } from '../../core/services/theme.service';
 import { LanguageService } from '../../core/services/language.service';
+import { AuthService } from '@e-shop/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-menu-bar',
@@ -15,7 +17,9 @@ export class MenuBarComponent implements OnInit {
 
   constructor(
     public themeService: ThemeService,
-    private language: LanguageService
+    private language: LanguageService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +46,9 @@ export class MenuBarComponent implements OnInit {
           tooltipLabel: 'Logout',
         },
         icon: 'pi pi-sign-out',
+        command: () => {
+          this.logout();
+        },
       },
     ];
 
@@ -65,5 +72,11 @@ export class MenuBarComponent implements OnInit {
         },
       },
     ];
+  }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['auth/login']);
+    });
   }
 }
