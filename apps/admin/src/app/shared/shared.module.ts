@@ -31,6 +31,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
+import { TranslateModule } from '@ngx-translate/core';
 
 const primeNg = [
   InputTextModule,
@@ -63,7 +64,7 @@ const primeNg = [
 @NgModule({
   declarations: [],
   providers: [ConfirmationService, MessageService],
-  imports: [CommonModule, FormsModule, ...primeNg],
-  exports: [...primeNg, TranslationModule, FormsModule],
+  imports: [CommonModule, FormsModule, ...primeNg, TranslateModule.forChild()],
+  exports: [...primeNg, FormsModule, TranslateModule],
 })
 export class SharedModule {}
