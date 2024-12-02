@@ -6,15 +6,16 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService) {}
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyOTg3ODY1LCJleHAiOjE3MzMwNzQyNjV9.aHAJn8nREVYa5kwtCF84_WyiB8UjIeTOEukWcxB4-zU';
+    const token = this.authService.getToken('accessToken');
 
     const modifiedRequest = request.clone({
       setHeaders: {

@@ -4,7 +4,7 @@
   <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
     <div class="text-center mb-5">
       <img
-        src="assets/images/blocks/logos/hyper.svg"
+        src="https://v17.angular.io/assets/images/logos/angular/logo-nav@2x.png"
         alt="Image"
         height="50"
         class="mb-3"
@@ -18,7 +18,16 @@
       >
     </div>
 
-    <div>
+    <p-messages severity="error" *ngIf="showError">
+      <ng-template pTemplate>
+        <div class="ml-2 p-2">
+          Invalid Email or Password <br />
+          Please enter valid email address and password
+        </div>
+      </ng-template>
+    </p-messages>
+
+    <form [formGroup]="loginForm">
       <label for="email1" class="block text-900 font-medium mb-2">Email</label>
       <input
         id="email1"
@@ -26,17 +35,19 @@
         placeholder="Email address"
         pInputText
         class="w-full mb-3 h-3rem"
+        formControlName="email"
       />
 
       <label for="password1" class="block text-900 font-medium mb-2"
         >Password</label
       >
       <input
-        id="password1"
+        id="password"
         type="password"
         placeholder="Password"
         pInputText
         class="w-full mb-3 h-3rem"
+        formControlName="password"
       />
 
       <div class="flex align-items-center justify-content-between mb-6">
@@ -61,8 +72,11 @@
         icon="pi pi-user"
         [raised]="true"
         class="w-full"
+        [loading]="loading"
+        [disabled]="!loginForm.valid"
+        (onClick)="submit()"
       >
       </p-button>
-    </div>
+    </form>
   </div>
 </div>
