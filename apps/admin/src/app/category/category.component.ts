@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CategoriesService } from '@e-shop/products';
 import { ICategory } from '@e-shop/products';
@@ -19,10 +20,18 @@ export class CategoryComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['cat'] === 'new') {
+        this.addCategory();
+      }
+    });
+
     this.categoriesService.getCategories().subscribe((categories) => {
       this.categories = categories;
     });
@@ -40,7 +49,7 @@ export class CategoryComponent implements OnInit {
 
   saveCategory(): void {
     if (!this.selectedCategory.name) {
-      this.showErrorMessage('Category name is required');
+      this.showMessage('Category name is required', 'error');
       return;
     }
     if (this.selectedCategory.id) {
@@ -54,11 +63,11 @@ export class CategoryComponent implements OnInit {
     this.categoriesService.updateCategory(this.selectedCategory).subscribe({
       next: () => {
         this.showDialog = false;
-        this.showSussesMessage('Category updated');
+        this.showMessage('Category updated', 'success');
         this.ngOnInit();
       },
       error: (error) => {
-        this.showErrorMessage(error.error.message);
+        this.showMessage(error.error.message, 'error');
       },
     });
   }
@@ -67,11 +76,13 @@ export class CategoryComponent implements OnInit {
     this.categoriesService.createCategory(this.selectedCategory).subscribe({
       next: () => {
         this.showDialog = false;
-        this.showSussesMessage('Category created');
+        this.showMessage('Category created', 'success');
+        this.navigateToAllCategories();
         this.ngOnInit();
+        console.log(this.showDialog);
       },
       error: (error) => {
-        this.showErrorMessage(error.error.message);
+        this.showMessage(error.error.message, 'error');
       },
     });
   }
@@ -87,30 +98,26 @@ export class CategoryComponent implements OnInit {
         this.deleteCategoryConfirmed(category);
       },
       reject: () => {
-        this.showErrorMessage('remove rejected');
+        this.showMessage('remove rejected', 'error');
       },
     });
   }
 
   deleteCategoryConfirmed(category: ICategory) {
     this.categoriesService.deleteCategory(category).subscribe(() => {
-      this.showSussesMessage('category deleted');
+      this.showMessage('category deleted', 'success');
 
       this.ngOnInit();
     });
   }
 
-  showErrorMessage(message: string) {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: message,
-    });
+  navigateToAllCategories() {
+    this.router.navigate(['/dashboard/category']);
   }
 
-  showSussesMessage(message: string) {
+  showMessage(message: string, type: 'error' | 'success') {
     this.messageService.add({
-      severity: 'success',
+      severity: type,
       summary: 'Success',
       detail: message,
     });

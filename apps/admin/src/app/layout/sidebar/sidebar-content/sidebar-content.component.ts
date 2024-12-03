@@ -43,15 +43,28 @@ export class SidebarContentComponent implements OnInit {
             icon: 'pi pi-angle-right',
             route: '/dashboard/category',
           },
-          { label: 'New', icon: 'pi pi-angle-right' },
+          {
+            label: 'New',
+            icon: 'pi pi-angle-right',
+            route: '/dashboard/category',
+            queryParams: { cat: 'new' },
+          },
         ],
       },
       {
         label: 'Products',
         icon: 'pi pi-box',
         items: [
-          { label: 'All', icon: 'pi pi-angle-right' },
-          { label: 'New', icon: 'pi pi-angle-right' },
+          {
+            label: 'All',
+            icon: 'pi pi-angle-right',
+            route: '/dashboard/product',
+          },
+          {
+            label: 'New',
+            icon: 'pi pi-angle-right',
+            route: '/dashboard/product/:id',
+          },
         ],
       },
       {

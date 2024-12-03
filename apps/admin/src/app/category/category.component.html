@@ -82,7 +82,7 @@
 <p-toast />
 
 <p-dialog
-  [(visible)]="showDialog"
+  [visible]="showDialog"
   header="Edit Category"
   [modal]="true"
   [style]="{ width: '40rem' }"
@@ -128,7 +128,7 @@
       <p-button
         label="Cancel"
         severity="secondary"
-        (onClick)="showDialog = false"
+        (onClick)="showDialog = false; navigateToAllCategories()"
       />
       <p-button label="Save" (onClick)="saveCategory()" />
     </div>
