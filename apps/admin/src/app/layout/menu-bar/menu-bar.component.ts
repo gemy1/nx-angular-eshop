@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, Message } from 'primeng/api';
-import { ThemeService } from '../../core/services/theme.service';
 import { LanguageService } from '../../core/services/language.service';
-import { AuthService } from '@e-shop/auth';
+import { ThemeService } from '../../core/services/theme.service';
 import { Router } from '@angular/router';
+import { AuthService, User } from '@e-shop/auth';
+
+import { MenuItem, Message } from 'primeng/api';
 
 @Component({
   selector: 'admin-menu-bar',
@@ -15,6 +16,8 @@ export class MenuBarComponent implements OnInit {
   langItems: MenuItem[] = [];
   messages: Message[] = [];
 
+  userInfo!: User;
+
   constructor(
     public themeService: ThemeService,
     private language: LanguageService,
@@ -23,6 +26,8 @@ export class MenuBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userInfo = this.authService.getUserInfo();
+
     this.messages = [
       {
         severity: 'success',

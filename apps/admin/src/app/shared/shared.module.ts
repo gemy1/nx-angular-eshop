@@ -21,7 +21,6 @@ import { AvatarModule } from 'primeng/avatar';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { BadgeModule } from 'primeng/badge';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { TranslationModule } from '@e-shop/translation';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';

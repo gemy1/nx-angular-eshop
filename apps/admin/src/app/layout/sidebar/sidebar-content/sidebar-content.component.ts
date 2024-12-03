@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService, User } from '@e-shop/auth';
 
 import { MenuItem } from 'primeng/api';
 
@@ -11,9 +12,13 @@ import { MenuItem } from 'primeng/api';
 export class SidebarContentComponent implements OnInit {
   items: MenuItem[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  userInfo!: User;
 
   ngOnInit(): void {
+    this.userInfo = this.authService.getUserInfo();
+
     this.items = [
       {
         label: 'Dashboard',
@@ -25,17 +30,18 @@ export class SidebarContentComponent implements OnInit {
         label: 'Home',
         icon: 'pi pi-home',
         routerLinkActiveOptions: { exact: true },
-        route: '/',
+        route: '/dashboard',
       },
       {
         label: 'Categories',
         icon: 'pi pi-list',
+        style: { display: this.userInfo.role === 'admin' ? 'block' : 'none' },
 
         items: [
           {
             label: 'All',
             icon: 'pi pi-angle-right',
-            route: '/category',
+            route: '/dashboard/category',
           },
           { label: 'New', icon: 'pi pi-angle-right' },
         ],
