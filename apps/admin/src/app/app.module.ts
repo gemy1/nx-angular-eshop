@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { CoreModule } from './core/core.module';
 import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
 
 import { TranslationModule } from '@e-shop/translation';
 import { AuthModule } from '@e-shop/auth';
@@ -24,6 +25,7 @@ import { AuthModule } from '@e-shop/auth';
     CoreModule,
     TranslationModule,
     AuthModule,
+    ProductModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
