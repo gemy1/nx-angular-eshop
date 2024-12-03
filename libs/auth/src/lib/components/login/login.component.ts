@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({
         next: () => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
         },
         error: () => {
           this.showError = true;

@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthRedirectGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -21,8 +21,8 @@ export class AuthGuard implements CanActivate {
   ): MaybeAsync<GuardResult> {
     const isAuthenticated = this.authService.isAuthenticated();
 
-    if (!isAuthenticated) {
-      this.router.navigate(['auth/login']);
+    if (isAuthenticated) {
+      this.router.navigate(['/dashboard']);
       return false;
     }
 

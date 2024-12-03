@@ -1,0 +1,100 @@
+<div
+  class="flex justify-content-center align-items-center h-screen surface-ground"
+>
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+      <img
+        src="https://v17.angular.io/assets/images/logos/angular/logo-nav@2x.png"
+        alt="Image"
+        height="50"
+        class="mb-3"
+      />
+      <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
+      <span class="text-600 font-medium line-height-3"
+        >Do You have an account?</span
+      >
+      <a
+        class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
+        routerLink="/auth/login"
+        >Login Instated</a
+      >
+    </div>
+
+    <p-messages severity="error" *ngIf="showError">
+      <ng-template pTemplate>
+        <div class="ml-2 p-2">
+          {{ errorMessage }}
+        </div>
+      </ng-template>
+    </p-messages>
+
+    <form [formGroup]="registerForm">
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="username">Username</label>
+        <input
+          formControlName="username"
+          class="w-full h-3rem"
+          pInputText
+          placeholder="Username"
+          id="username"
+        />
+      </div>
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="email">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          pInputText
+          class="w-full h-3rem"
+          placeholder="Email"
+          id="email"
+        />
+      </div>
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          class="w-full h-3rem"
+          pInputText
+          type="password"
+          placeholder="Password"
+          id="password"
+        />
+      </div>
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="Confirm-password">Confirm Password</label>
+        <input
+          formControlName="confirmPassword"
+          class="w-full h-3rem"
+          pInputText
+          type="password"
+          placeholder="ConfirmPassword"
+          id="Confirm-password"
+        />
+        <small
+          class="text-red-300"
+          *ngIf="
+            registerForm.get('confirmPassword')?.dirty &&
+            registerForm
+              .get('confirmPassword')
+              ?.hasError('confirmedPasswordMismatch')
+          "
+        >
+          Confirm Password Not Match
+        </small>
+      </div>
+      <p-button
+        pRipple
+        styleClass="w-full h-3rem"
+        label="Register"
+        icon="pi pi-user"
+        [raised]="true"
+        class="w-full"
+        [loading]="loading"
+        [disabled]="!registerForm.valid"
+        (onClick)="submit()"
+      >
+      </p-button>
+    </form>
+  </div>
+</div>

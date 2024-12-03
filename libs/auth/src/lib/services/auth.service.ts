@@ -27,6 +27,17 @@ export class AuthService {
       );
   }
 
+  register(credential: { username: string; password: string; email: string }) {
+    return this.http
+      .post<LoginResponse>('http://localhost:3000/auth/register', credential)
+      .pipe(
+        tap((res) => {
+          localStorage.setItem('accessToken', res.accessToken);
+          localStorage.setItem('refreshToken', res.refreshToken);
+        })
+      );
+  }
+
   logout() {
     return this.http.get('http://localhost:3000/auth/logout').pipe(
       tap(() => {
