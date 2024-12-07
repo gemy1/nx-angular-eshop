@@ -35,4 +35,11 @@ export interface IProduct {
   createdAt?: Date;
 
   updatedAt?: Date;
+
+  message?: string;
+}
+
+export interface ProductResponse {
+  data: IProduct[];
+  totalRecord: number;
 }

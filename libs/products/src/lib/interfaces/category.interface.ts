@@ -11,3 +11,9 @@ export interface ICategory {
 
   products?: IProduct[];
 }
+
+export interface CategoryResponse {
+  data: ICategory[];
+
+  totalRecord: number;
+}
