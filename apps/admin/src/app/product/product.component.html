@@ -1,1 +1,96 @@
-<p>product works!</p>
+<p-toolbar styleClass="mb-4">
+  <ng-template pTemplate="left">
+    <p-button
+      severity="success"
+      label="New"
+      icon="pi pi-plus"
+      class="mr-2"
+      (onClick)="addProducts()"
+    />
+  </ng-template>
+</p-toolbar>
+
+<p-table
+  [tableStyle]="{ 'min-width': '50rem' }"
+  #dt
+  [value]="products"
+  styleClass=" p-datatable-striped p-datatable-thead text-light"
+  sortField="id"
+  [sortOrder]="-1"
+  [globalFilterFields]="['id', 'name', 'description']"
+  [paginator]="true"
+  [(rows)]="rows"
+  [pageLinks]="5"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  [loading]="loading"
+  [totalRecords]="totalRecords"
+  [lazy]="true"
+  (onLazyLoad)="lazyLoadProducts($event)"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+      <h5 class="m-0">Manage Products</h5>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          #searchValue
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal(searchValue.value, 'contains')"
+          placeholder="Search..."
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr class="text-sm h-4rem">
+      <th pSortableColumn="id" class="surface-100 col-1">
+        ID <p-sortIcon field="id" />
+      </th>
+      <th class="surface-100">Name</th>
+      <th class="surface-100 col-2">Description</th>
+      <th class="surface-100">Price</th>
+      <th class="surface-100">Main Image</th>
+      <th class="surface-100">Stock</th>
+      <th class="surface-100">Category</th>
+      <th class="surface-100">User</th>
+      <th class="surface-100">Is Featured</th>
+      <th class="surface-100 text-center">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.mainImage.path }}</td>
+      <td>{{ product.stockQuantity }}</td>
+      <td>{{ product.category.name }}</td>
+      <td>{{ product.user.name }}</td>
+      <td>{{ product.isFeatured }}</td>
+
+      <td class="text-center">
+        <p-button
+          icon="pi pi-pencil"
+          class="mr-2"
+          [rounded]="true"
+          [outlined]="true"
+          severity="success"
+          (onClick)="editProduct(product.id)"
+        ></p-button>
+        <p-button
+          icon="pi pi-trash"
+          severity="danger"
+          [rounded]="true"
+          [outlined]="true"
+          (onClick)="deleteProduct(product.id, $event)"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-confirmPopup />
+<p-toast />

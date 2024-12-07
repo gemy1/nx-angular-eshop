@@ -63,7 +63,7 @@ export class SidebarContentComponent implements OnInit {
           {
             label: 'New',
             icon: 'pi pi-angle-right',
-            route: '/dashboard/product/:id',
+            route: '/dashboard/product/new',
           },
         ],
       },
