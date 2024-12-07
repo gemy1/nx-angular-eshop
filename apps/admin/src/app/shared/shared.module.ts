@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { TranslateModule } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TextRichEditorComponent } from './components/text-rich-editor/text-rich-editor.component';
 
 // PrimeNG modules
 import { InputTextModule } from 'primeng/inputtext';
@@ -30,7 +33,9 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
-import { TranslateModule } from '@ngx-translate/core';
+import { StepperModule } from 'primeng/stepper';
+import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
 
 const primeNg = [
   InputTextModule,
@@ -58,12 +63,28 @@ const primeNg = [
   InputTextareaModule,
   ConfirmPopupModule,
   ToastModule,
+  StepperModule,
+  DropdownModule,
+  FileUploadModule,
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [TextRichEditorComponent],
   providers: [ConfirmationService, MessageService],
-  imports: [CommonModule, FormsModule, ...primeNg, TranslateModule.forChild()],
-  exports: [...primeNg, FormsModule, TranslateModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ...primeNg,
+    TranslateModule.forChild(),
+    CKEditorModule,
+  ],
+  exports: [
+    ...primeNg,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    TextRichEditorComponent,
+  ],
 })
 export class SharedModule {}

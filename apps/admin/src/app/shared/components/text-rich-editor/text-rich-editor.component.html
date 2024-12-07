@@ -1,1 +1,18 @@
-<p>text-rich-editor works!</p>
+<div class="main-container">
+  <div
+    class="editor-container editor-container_classic-editor"
+    #editorContainerElement
+  >
+    <div class="editor-container__editor">
+      <div #editorElement>
+        <ckeditor
+          [(ngModel)]="value"
+          [editor]="Editor"
+          [config]="config"
+          *ngIf="isLayoutReady"
+          (change)="onChange($event)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
