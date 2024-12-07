@@ -12,10 +12,14 @@ export class PreLoaderService {
   }
 
   hidePreloader() {
-    const widows = this.document.defaultView;
-    widows?.addEventListener('load', () => {
-      const preloader = this.document.querySelector('.loader-overlay');
+    const window = this.document.defaultView;
+    const preloader = this.document.querySelector('.loader-overlay');
+    if (document.readyState === 'complete') {
       preloader?.classList.add('pre-loader-none');
-    });
+    } else {
+      window?.addEventListener('load', () => {
+        preloader?.classList.add('pre-loader-none');
+      });
+    }
   }
 }
