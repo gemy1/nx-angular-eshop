@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from '@e-shop/products';
 import { ICategory } from '@e-shop/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TableLazyLoadEvent } from 'primeng/table';
 
 @Component({
   selector: 'admin-category',
@@ -12,10 +13,12 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class CategoryComponent implements OnInit {
   categories: ICategory[] = [];
+  selectedCategory: ICategory = {};
 
   showDialog = false;
-
-  selectedCategory: ICategory = {};
+  loading = true;
+  totalRecords = 0;
+  rows = 5;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -31,10 +34,36 @@ export class CategoryComponent implements OnInit {
         this.addCategory();
       }
     });
+  }
 
-    this.categoriesService.getCategories().subscribe((categories) => {
-      this.categories = categories;
-    });
+  loadCategories(): void {
+    this.categoriesService
+      .getCategories(0, this.rows, 'id', 'desc')
+      .subscribe((categories) => {
+        this.categories = categories.data;
+        this.totalRecords = categories.totalRecord;
+        this.loading = false;
+      });
+  }
+
+  lazyLoadCategory(event: TableLazyLoadEvent) {
+    const { first, rows, sortField, globalFilter } = event;
+
+    const sortOrder = event.sortOrder === -1 ? 'desc' : 'asc';
+
+    this.categoriesService
+      .getCategories(
+        first,
+        rows as number,
+        sortField as string,
+        sortOrder,
+        globalFilter as string
+      )
+      .subscribe((categories) => {
+        this.categories = categories.data;
+        this.totalRecords = categories.totalRecord;
+        this.loading = false;
+      });
   }
 
   editCategory(category: ICategory): void {
@@ -64,7 +93,7 @@ export class CategoryComponent implements OnInit {
       next: () => {
         this.showDialog = false;
         this.showMessage('Category updated', 'success');
-        this.ngOnInit();
+        this.loadCategories();
       },
       error: (error) => {
         this.showMessage(error.error.message, 'error');
@@ -78,8 +107,7 @@ export class CategoryComponent implements OnInit {
         this.showDialog = false;
         this.showMessage('Category created', 'success');
         this.navigateToAllCategories();
-        this.ngOnInit();
-        console.log(this.showDialog);
+        this.loadCategories();
       },
       error: (error) => {
         this.showMessage(error.error.message, 'error');
@@ -107,7 +135,7 @@ export class CategoryComponent implements OnInit {
     this.categoriesService.deleteCategory(category).subscribe(() => {
       this.showMessage('category deleted', 'success');
 
-      this.ngOnInit();
+      this.loadCategories();
     });
   }
 

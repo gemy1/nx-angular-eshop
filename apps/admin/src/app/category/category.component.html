@@ -18,6 +18,15 @@
     sortField="id"
     [sortOrder]="-1"
     [globalFilterFields]="['id', 'name', 'description']"
+    [paginator]="true"
+    [(rows)]="rows"
+    [pageLinks]="5"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [loading]="loading"
+    [totalRecords]="totalRecords"
+    [lazy]="true"
+    (onLazyLoad)="lazyLoadCategory($event)"
   >
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
@@ -82,8 +91,8 @@
 <p-toast />
 
 <p-dialog
-  [visible]="showDialog"
-  header="Edit Category"
+  [(visible)]="showDialog"
+  [header]="selectedCategory.id ? 'Edit Category' : 'add Category'"
   [modal]="true"
   [style]="{ width: '40rem' }"
 >
