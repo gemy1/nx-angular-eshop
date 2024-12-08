@@ -13,6 +13,7 @@ import { ProductModule } from './product/product.module';
 
 import { TranslationModule } from '@e-shop/translation';
 import { AuthModule } from '@e-shop/auth';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { AuthModule } from '@e-shop/auth';
     TranslationModule,
     AuthModule,
     ProductModule,
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

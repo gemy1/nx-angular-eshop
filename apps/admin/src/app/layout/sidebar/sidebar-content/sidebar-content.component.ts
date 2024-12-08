@@ -76,8 +76,17 @@ export class SidebarContentComponent implements OnInit {
         label: 'Users',
         icon: 'pi pi-user',
         items: [
-          { label: 'All', icon: 'pi pi-angle-right' },
-          { label: 'New', icon: 'pi pi-angle-right' },
+          {
+            label: 'All',
+            icon: 'pi pi-angle-right',
+            route: '/dashboard/user',
+          },
+          {
+            label: 'New',
+            icon: 'pi pi-angle-right',
+            route: '/dashboard/user',
+            queryParams: { user: 'new' },
+          },
         ],
       },
       {

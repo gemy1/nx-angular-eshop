@@ -1,0 +1,178 @@
+<div class="card">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <p-button
+        severity="success"
+        label="New"
+        icon="pi pi-plus"
+        class="mr-2"
+        (onClick)="addUser()"
+      />
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+    #dt
+    [value]="users"
+    styleClass=" p-datatable-striped p-datatable-thead text-light"
+    sortField="id"
+    [sortOrder]="-1"
+    [globalFilterFields]="['id', 'name', 'description']"
+    [paginator]="true"
+    [(rows)]="rows"
+    [pageLinks]="5"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [loading]="loading"
+    [totalRecords]="totalRecords"
+    [lazy]="true"
+    (onLazyLoad)="lazyLoadUsers($event)"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0">Manage Categories</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            #searchValue
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal(searchValue.value, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr class="text-sm h-4rem">
+        <th pSortableColumn="id" class="surface-100 col-1">
+          ID <p-sortIcon field="id" />
+        </th>
+        <th class="surface-100">username</th>
+        <th class="surface-100 col-3">email</th>
+        <th class="surface-100 col-3">role</th>
+        <th class="surface-100 text-center">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+
+        <td class="text-center">
+          <p-button
+            icon="pi pi-pencil"
+            class="mr-2"
+            [rounded]="true"
+            [outlined]="true"
+            severity="success"
+            (onClick)="editUser(user)"
+          ></p-button>
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            [rounded]="true"
+            [outlined]="true"
+            (onClick)="deleteUser(user, $event)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmPopup />
+<p-toast />
+
+<p-dialog
+  [(visible)]="showDialog"
+  [header]="userId ? 'Edit User' : 'add User'"
+  [modal]="true"
+  [style]="{ width: '40rem' }"
+>
+  <p-card>
+    <p>Update User fields</p>
+    <form [formGroup]="userForm">
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="username">Username</label>
+        <input
+          formControlName="username"
+          class="w-full h-3rem"
+          pInputText
+          placeholder="Username"
+          id="username"
+        />
+      </div>
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="email">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          pInputText
+          class="w-full h-3rem"
+          placeholder="Email"
+          id="email"
+        />
+      </div>
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="Role">Role</label>
+        <input
+          formControlName="role"
+          pInputText
+          class="w-full h-3rem"
+          placeholder="role"
+          id="Role"
+        />
+      </div>
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          class="w-full h-3rem"
+          pInputText
+          type="password"
+          placeholder="Password"
+          id="password"
+        />
+      </div>
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="Confirm-password">Confirm Password</label>
+        <input
+          formControlName="confirmPassword"
+          class="w-full h-3rem"
+          pInputText
+          type="password"
+          placeholder="ConfirmPassword"
+          id="Confirm-password"
+        />
+        <small
+          class="text-red-300"
+          *ngIf="
+            userForm.get('confirmPassword')?.dirty &&
+            userForm
+              .get('confirmPassword')
+              ?.hasError('confirmedPasswordMismatch')
+          "
+        >
+          Confirm Password Not Match
+        </small>
+      </div>
+    </form>
+  </p-card>
+  <ng-template pTemplate="footer">
+    <div class="flex gap-2 justify-content-end">
+      <p-button
+        label="Cancel"
+        severity="secondary"
+        (onClick)="showDialog = false; navigateToAllUsers()"
+      />
+      <p-button
+        label="Save"
+        [disabled]="!userForm.valid"
+        (onClick)="saveUser()"
+      />
+    </div>
+  </ng-template>
+</p-dialog>

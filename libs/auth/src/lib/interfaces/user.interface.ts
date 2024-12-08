@@ -1,10 +1,17 @@
 export interface User {
-  id: number;
+  id?: number;
 
-  username: string;
+  username?: string;
 
-  role: string;
+  role?: string;
 
-  email: string;
+  email?: string;
+
+  password?: string;
 }
 
+export interface UserResponse {
+  data: User[];
+
+  totalRecord: number;
+}
