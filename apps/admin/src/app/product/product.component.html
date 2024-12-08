@@ -65,7 +65,13 @@
       <td>{{ product.name }}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.price }}</td>
-      <td>{{ product.mainImage.path }}</td>
+      <td>
+        <img
+          class="w-4rem border-round"
+          [src]="apiUrl + product.mainImage.path"
+          [alt]="product.name"
+        />
+      </td>
       <td>{{ product.stockQuantity }}</td>
       <td>{{ product.category.name }}</td>
       <td>{{ product.user.name }}</td>

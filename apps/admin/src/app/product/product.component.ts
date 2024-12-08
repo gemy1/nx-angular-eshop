@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IProduct, ProductsService } from '@e-shop/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TableLazyLoadEvent } from 'primeng/table';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'admin-product',
@@ -15,6 +16,8 @@ export class ProductComponent implements OnInit {
   rows = 10;
   loading = true;
   totalRecords!: number;
+
+  apiUrl = environment.API_URL;
 
   isLoading = false;
 
