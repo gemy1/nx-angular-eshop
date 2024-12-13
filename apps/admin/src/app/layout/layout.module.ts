@@ -9,6 +9,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarContentComponent } from './sidebar/sidebar-content/sidebar-content.component';
 import { SharedModule } from '../shared/shared.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     MenuBarComponent,
     SidebarComponent,
     SidebarContentComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

@@ -1,16 +1,15 @@
-<div class="card">
-  <p-toolbar styleClass="mb-4">
-    <ng-template pTemplate="left">
-      <p-button
-        severity="success"
-        label="New"
-        icon="pi pi-plus"
-        class="mr-2"
-        (onClick)="addCategory()"
-      />
-    </ng-template>
-  </p-toolbar>
-
+<p-toolbar styleClass="mb-4">
+  <ng-template pTemplate="left">
+    <p-button
+      severity="success"
+      label="New"
+      icon="pi pi-plus"
+      class="mr-2"
+      (onClick)="addCategory()"
+    />
+  </ng-template>
+</p-toolbar>
+<div class="py-3 border-round-lg surface-card surface-border border-1">
   <p-table
     #dt
     [value]="categories"
