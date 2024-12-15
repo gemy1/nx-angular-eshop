@@ -8,6 +8,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
+import { SidebarModule } from 'primeng/sidebar';
 
 const primeNg = [
   ButtonModule,
@@ -17,6 +18,7 @@ const primeNg = [
   InputIconModule,
   InputTextModule,
   BadgeModule,
+  SidebarModule,
 ];
 
 @NgModule({
