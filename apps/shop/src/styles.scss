@@ -1,1 +1,16 @@
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
 /* You can add global styles to this file, and also import other style files */
+@layer normalize, primeng;
+@import '../../../node_modules/normalize.css/normalize.css'
+  layer(normalize-reset);
+
+@import 'primeng/resources/primeng.css';
+@import 'primeng/resources/themes/aura-light-blue/theme.css';
+@import 'primeicons/primeicons.css';
+@import '../../../node_modules/primeflex/primeflex.css';

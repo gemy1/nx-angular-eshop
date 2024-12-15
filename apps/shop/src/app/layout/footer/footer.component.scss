@@ -1,0 +1,25 @@
+@keyframes fadeinleft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+.inAnimClass {
+  animation: fadeinleft;
+}
+
+/* In-Animation */
+@keyframes inAnim {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
