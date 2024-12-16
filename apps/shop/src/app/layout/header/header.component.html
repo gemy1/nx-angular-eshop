@@ -1,16 +1,31 @@
 <header class="h-min">
   <div class="flex flex-wrap align-items-center bg-gray-50">
-    <div class="block sm:hidden col-4">
-      <p-button icon="pi pi-bars" severity="secondary" />
+    <div class="block lg:hidden sm:col-1 col-3">
+      <p-button
+        icon="pi pi-bars"
+        severity="secondary"
+        (onClick)="sidebarService.toggleSidebar()"
+      />
     </div>
-    <div class="sm:col-3 col-4">logo</div>
+
+    <div class="sm:col-3 col-4">
+      <p-button
+        label="Shop"
+        icon="pi pi-shop"
+        severity="secondary"
+        [text]="true"
+      />
+    </div>
+
     <div class="hidden sm:block col-4">
       <shop-search></shop-search>
     </div>
+
     <div class="hidden lg:col-3 lg:block">
       <shop-menu></shop-menu>
     </div>
-    <div class="lg:col-2 md:col-5 sm:col-5 col-4">
+
+    <div class="lg:col-2 md:col-4 sm:col-4 col-5">
       <shop-icons></shop-icons>
     </div>
   </div>

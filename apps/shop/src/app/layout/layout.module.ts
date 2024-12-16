@@ -8,9 +8,10 @@ import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './components/search/search.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { IconsComponent } from './components/icons/icons.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, PublicLayoutComponent, SearchComponent, MenuComponent, IconsComponent],
+  declarations: [HeaderComponent, FooterComponent, PublicLayoutComponent, SearchComponent, MenuComponent, IconsComponent, SidebarComponent],
   imports: [CommonModule, LayoutRoutingModule, SharedModule],
 })
 export class LayoutModule {}

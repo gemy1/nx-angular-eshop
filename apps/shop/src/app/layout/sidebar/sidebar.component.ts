@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { SidebarService } from '../../core/services/sidebar.service';
 
 @Component({
-  selector: 'shop-header',
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  selector: 'shop-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.scss',
 })
-export class HeaderComponent {
+export class SidebarComponent {
   constructor(public sidebarService: SidebarService) {}
 }
