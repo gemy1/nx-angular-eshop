@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService, User } from '@e-shop/auth';
 import {
   CategoriesService,
   ICategory,
   IProduct,
   ProductsService,
 } from '@e-shop/products';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'admin-product-form',
@@ -26,15 +28,21 @@ export class ProductFormComponent implements OnInit {
 
   richDescription = '';
 
+  user!: User;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private categoryService: CategoriesService,
     private productsService: ProductsService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
+    this.user = this.authService.getUserInfo();
+
     this.productFormInit();
 
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -69,7 +77,11 @@ export class ProductFormComponent implements OnInit {
       categoryId: ['', [Validators.required]],
       price: ['', [Validators.required]],
       stockQuantity: ['', [Validators.required]],
+      isFeatured: [null],
     });
+    if (this.user.role !== 'admin') {
+      this.productForm.get('isFeatured')?.disable();
+    }
   }
 
   populateProductForm(product: IProduct) {
@@ -97,6 +109,11 @@ export class ProductFormComponent implements OnInit {
         this.product = res;
         this.isLoading = false;
         this.activeStep = this.activeStep + 1;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'Product Created Successfully',
+        });
       },
     });
   }
@@ -108,6 +125,19 @@ export class ProductFormComponent implements OnInit {
       next: () => {
         this.isLoading = false;
         this.activeStep = this.activeStep + 1;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'Product updated successfully',
+        });
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: error.error.message,
+        });
       },
     });
   }

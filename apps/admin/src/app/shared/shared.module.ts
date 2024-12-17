@@ -36,6 +36,7 @@ import { ToastModule } from 'primeng/toast';
 import { StepperModule } from 'primeng/stepper';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 const primeNg = [
   InputTextModule,
@@ -66,6 +67,7 @@ const primeNg = [
   StepperModule,
   DropdownModule,
   FileUploadModule,
+  InputSwitchModule,
 ];
 
 @NgModule({
