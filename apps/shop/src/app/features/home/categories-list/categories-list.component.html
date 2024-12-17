@@ -1,0 +1,21 @@
+<div class="mt-7">
+  <p>Categories</p>
+  <div
+    class="flex gap-3 mt-4 flex-wrap justify-content-around lg:flex-nowrap lg:overflow-x-scroll py-3"
+  >
+    @for (category of categories; track $index) {
+    <div
+      class="py-4 px-8 flex flex-column gap-2 align-items-center border-round-2xl cursor-pointer hover:shadow-3"
+      [ngStyle]="{ backgroundColor: category.color }"
+    >
+      <i
+        [class]="'text-600 pi pi-' + category.icon"
+        style="font-size: 2.5rem"
+      ></i>
+      <div class="font-light">
+        {{ category.name }}
+      </div>
+    </div>
+    }
+  </div>
+</div>
