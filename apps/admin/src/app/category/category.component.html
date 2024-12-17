@@ -49,6 +49,7 @@
         </th>
         <th class="surface-100">Name</th>
         <th class="surface-100 col-3">Description</th>
+        <th class="surface-100">icon</th>
         <th class="surface-100">Color</th>
         <th class="surface-100 text-center">Actions</th>
       </tr>
@@ -58,6 +59,7 @@
         <td>{{ category.id }}</td>
         <td>{{ category.name }}</td>
         <td>{{ category.description }}</td>
+        <td><i [class]="'pi pi-' + category.icon"></i></td>
         <td>
           <div
             class="w-2rem h-2rem border-round"
@@ -105,6 +107,17 @@
           id="name"
           placeholder="Category name"
           [(ngModel)]="selectedCategory.name"
+          name="name"
+        />
+      </div>
+
+      <div class="flex flex-column gap-2 mb-5">
+        <label for="icon" class="font-light">Icon</label>
+        <input
+          pInputText
+          id="icon"
+          placeholder="icon name"
+          [(ngModel)]="selectedCategory.icon"
           name="name"
         />
       </div>

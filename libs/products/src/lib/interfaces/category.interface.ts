@@ -9,6 +9,8 @@ export interface ICategory {
 
   description?: string;
 
+  icon?: string;
+
   products?: IProduct[];
 }
 
